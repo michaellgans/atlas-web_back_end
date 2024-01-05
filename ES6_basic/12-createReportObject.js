@@ -1,6 +1,6 @@
 export default function createReportObject(employeesList) {
   /* Create object to return */
-  let employeeReport = {
+  const employeeReport = {
     allEmployees: {
       ...employeesList,
     },
