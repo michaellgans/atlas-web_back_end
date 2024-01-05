@@ -26,9 +26,13 @@ export default class Currency {
     return this._name;
   }
 
-  set name(x) {
-    if (typeof x === 'string') {
-      this._name = x;
+  set name(y) {
+    if (typeof y === 'string') {
+      this._name = y;
     }
+  }
+
+  displayFullCurrency() {
+    return `${this.name} (${this.code})`
   }
 }
