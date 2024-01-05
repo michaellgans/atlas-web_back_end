@@ -1,13 +1,13 @@
 /* Task 6 */
 
-import Building from "./5-building";
+import Building from './5-building';
 
 class SkyHighBuilding extends Building {
   constructor(sqft, floors) {
     super(sqft);
 
     if (typeof floors !== 'number') {
-        throw TypeError('Floors must be a number');
+      throw TypeError('Floors must be a number');
     }
     this._floors = floors;
   }
@@ -18,5 +18,9 @@ class SkyHighBuilding extends Building {
 
   get floors() {
     return this._floors;
+  }
+
+  evacuationWarningMessage() {
+    return `Evacuate slowly the ${this.floors} floors`;
   }
 }
