@@ -1,7 +1,7 @@
 /* Task 3 */
 
 export default class Currency {
-  constructor (code, name) {
+  constructor(code, name) {
     if (typeof code !== 'string') {
       throw TypeError('Code must be a string');
     }
