@@ -5,6 +5,8 @@ export default function getListStudentIds(studentList) {
     const emptylist = []
     return emptylist;
   }
-
-  for 
+  
+  const newArray = studentList.map(item => item.id);
+  
+  return newArray;
 }
