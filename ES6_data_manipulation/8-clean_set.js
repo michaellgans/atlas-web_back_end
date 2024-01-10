@@ -3,11 +3,11 @@
 export default function cleanSet(set, startString) {
   let result = '';
 
-  if (startString.length === 0) {
+  if (startString.length < 1) {
     return '';
   }
 
-  if (typeof startString !== "string") {
+  if (!startString) {
     return '';
   }
 
