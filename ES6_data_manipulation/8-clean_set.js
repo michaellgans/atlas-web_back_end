@@ -4,7 +4,11 @@ export default function cleanSet(set, startString) {
   let result = '';
 
   if (startString.length === 0) {
-    return;
+    return '';
+  }
+
+  if (typeof startString !== "string") {
+    return '';
   }
 
   for (const item of set) {
