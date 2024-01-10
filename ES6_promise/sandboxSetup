@@ -1,0 +1,42 @@
+#!/bin/bash
+
+cd ../..
+
+echo "---CHANGED DIRECTORIES---"
+pwd 
+
+# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+nvm install 12.11.1
+
+nvm use 12.11.1
+
+echo "---CURRENT VERSION OF NVM---"
+nvm -v
+
+cd atlas-web_back_end/ES6_data_manipulation
+
+echo "---CHANGED DIRECTORIES---"
+pwd
+
+echo "---INSTALLING JEST---"
+npm install --save-dev jest
+
+echo "---INSTALLING BABEL---"
+npm install --save-dev babel-jest @babel/core @babel/preset-env
+
+echo "---INSTALLING ESLINT---"
+npm install --save-dev eslint
+
+echo "---CREATING FILES---"
+vi package.json
+
+vi babel.config.js
+
+vi .eslintrc.js
+
+echo "---FILES CREATED---"
+ls
+
+echo "---FINAL INSTALL---"
+npm install
