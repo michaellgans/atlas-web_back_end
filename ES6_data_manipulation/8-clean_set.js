@@ -9,7 +9,7 @@ export default function cleanSet(set, startString) {
 
   for (const item of set) {
     if (item.startsWith(startString)) {
-      result += item.substring(startString.length) + '-';
+      result += `${item.substring(startString.length)}-`;
     }
   }
 
