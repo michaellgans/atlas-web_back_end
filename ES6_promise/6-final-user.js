@@ -8,10 +8,10 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
 
   try {
     const userResult = await signUpUser(fileName, lastName);
-      resultArray.push({
-        status: 'fulfilled',
-        value: { firstName, lastName },
-      });
+    resultArray.push({
+      status: 'fulfilled',
+      value: { firstName, lastName },
+    });
 
     const photoResult = await uploadPhoto(fileName);
     resultArray.push({
