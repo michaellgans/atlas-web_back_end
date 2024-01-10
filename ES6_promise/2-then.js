@@ -1,8 +1,8 @@
 /* Task 2 */
 
-export default function getFullResponseFromAPI(success) {
+export default function handleResponseFromAPI(promise) {
   return new Promise((resolve, reject) => {
-    if (success) {
+    if (promise) {
       resolve({
         status: 200,
         body: 'Success',
