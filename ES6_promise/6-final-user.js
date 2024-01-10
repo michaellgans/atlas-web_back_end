@@ -7,16 +7,16 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
   const resultArray = [];
 
   try {
-    const results = await Promise.allSettled([
-      signUpUser(fileName, lastName),
-      uploadPhoto(fileName),
-    ]);
-
-    results.forEach((result) => {
+    const userResult = await signUpUser(fileName, lastName);
       resultArray.push({
-        status: result.status,
-        value: result.status === 'fulfilled' ? result.value : result.reason.toString(),
+        status: 'fulfilled',
+        value: { firstName, lastName },
       });
+
+    const photoResult = await uploadPhoto(fileName);
+    resultArray.push({
+      status: 'fulfilled',
+      value: photoResult,
     });
   } catch (error) {
     resultArray.push({
