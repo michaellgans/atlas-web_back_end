@@ -7,7 +7,7 @@ printf "New File Name:\t"
 read M
 
 #write the first line of the new file
-echo "#!/usr/bin/python3
+echo "#!/usr/bin/env python3
 \"\"\" Documentation \"\"\"
 
 
