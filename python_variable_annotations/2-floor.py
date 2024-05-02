@@ -3,4 +3,5 @@
 
 
 def floor(n: float) -> int:
+    """ Function to find the floor of a float """
     return int(n)
