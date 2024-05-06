@@ -11,7 +11,7 @@ echo "#!/usr/bin/env python3
 \"\"\" Documentation \"\"\"
 
 
-def myFunction()
+def myFunction():
     \"\"\" Documentation \"\"\"" > "$M"
 
 #makes new file executable
