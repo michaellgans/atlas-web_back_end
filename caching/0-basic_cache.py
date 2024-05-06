@@ -1,31 +1,25 @@
 #!/usr/bin/env python3
-""" Task 0 - This needs to be longer to pass the check
+""" Task 0 - Creates a child class of BaseCaching called BasicCache
 """
 
 from base_caching import BaseCaching
 
 
 class BasicCache(BaseCaching):
-    """ Child class of BaseCaching:
-        - Creates a caching system
-        - Stores values in key[value] pairs
-    """
+    """ Child class of BaseCaching """
     def __init__(self):
-        """ Initiliaze
-        """
+        """ Initiliaze """
         super().__init__()
         self.cache = self.cache_data
 
     def put(self, key, item):
-        """ Puts items in the cache
-        """
+        """ Puts items in the cache """
         if key is None or item is None:
-            pass
+            return None
         self.cache[key] = item
 
     def get(self, key):
-        """ Fetches items in the cache
-        """
+        """ Fetches items in the cache """
         if key is None:
             return None
 
