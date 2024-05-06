@@ -6,9 +6,7 @@ from base_caching import BaseCaching
 
 class BasicCache(BaseCaching):
     """ Child class of BaseCaching """
-
     def __init__(self):
-        """ Initializes variables """
         super().__init__()
         self.cache = self.cache_data
 
