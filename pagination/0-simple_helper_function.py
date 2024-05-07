@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" Task 1 - Simple Helper Function """
+""" Task 0 - Simple Helper Function """
 
 from typing import Tuple
 
