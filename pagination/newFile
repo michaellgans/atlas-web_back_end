@@ -1,21 +1,21 @@
 #!/bin/bash
 
-#prompts user for new file name
+# Prompts user for new file name
 printf "New File Name:\t"
 
-#sets M as variable for input
-read M
+# Sets fileName as variable for input
+read fileName
 
-#write the first line of the new file
+# Write the base file template
 echo "#!/usr/bin/env python3
 \"\"\" Documentation \"\"\"
 
 
 def myFunction():
-    \"\"\" Documentation \"\"\"" > "$M"
+    \"\"\" Documentation \"\"\"" > "$fileName"
 
-#makes new file executable
-chmod u+x "$M"
+# Makes new file executable
+chmod u+x "$fileName"
 
-#opens new file
-vi "$M"
+# Opens new file with vi
+vi "$fileName"
