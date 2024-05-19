@@ -43,3 +43,4 @@ class Server:
             return []
 
         return self.dataset()[data_start:data_end]
+        print("Dataset:", self.dataset())
