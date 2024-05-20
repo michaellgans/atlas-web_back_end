@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-""" Task 1 - Simple Helper Function """
+""" Task 2 - Hypermedia Pagination """
 
 import csv
 import math
-from typing import List, Tuple
+from typing import List, Tuple, Union, Dict
 
 
 def index_range(page: int, page_size: int) -> Tuple:
@@ -44,3 +44,14 @@ class Server:
 
         return self.dataset()[data_start:data_end]
         print("Dataset:", self.dataset())
+
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Union[int, List[List]]]:
+        """ Returns a Dictionary with Mulitple Entries """
+        data_dict = {}
+        data_dict["page_size"] = 1
+        data_dict["page"] = 2
+        data_dict["data"] = self.get_page(page, page_size)
+        data_dict["next_page"] = 3
+        data_dict["prev_page"] = 4
+        data_dict["total_page"] = 5
+        return data_dict
