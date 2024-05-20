@@ -45,13 +45,18 @@ class Server:
         return self.dataset()[data_start:data_end]
         print("Dataset:", self.dataset())
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Union[int, List[List]]]:
+    def get_hyper(self, page: int = 1, page_size: int = 10):
         """ Returns a Dictionary with Mulitple Entries """
+        data = self.get_page(page, page_size)
+        data_length = len(self.dataset())
+        total_pages = math.ceil(data_length / page_size)
         data_dict = {}
-        data_dict["page_size"] = 1
-        data_dict["page"] = 2
+
+        data_dict["page_size"] = len(data)
+        data_dict["page"] = page
         data_dict["data"] = self.get_page(page, page_size)
-        data_dict["next_page"] = 3
-        data_dict["prev_page"] = 4
-        data_dict["total_page"] = 5
+        data_dict["next_page"] = page + 1 if page < total_pages else None
+        data_dict["prev_page"] = page - 1 if page > 1 else None
+        data_dict["total_pages"] = total_pages
+
         return data_dict
