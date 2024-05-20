@@ -32,10 +32,12 @@ class RedactingFormatter(logging.Formatter):
     SEPARATOR = ";"
 
     def __init__(self, fields: List[str]):
+        """ Initializes Varaibles """
         super(RedactingFormatter, self).__init__(self.FORMAT)
         self.fields = fields
 
     def format(self, record: logging.LogRecord) -> str:
+        """ Redacts specific fields """
         og_mess = super().format(record)
         redacted_message = filter_datum(
             self.fields, self.REDACTION, og_mess, self.SEPARATOR)
