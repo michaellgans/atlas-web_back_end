@@ -2,7 +2,9 @@
 """ Task 0 - Regex-ing """
 
 import re
+import os
 import logging
+import mysql.connector
 from typing import List
 
 # To be redacted
@@ -63,6 +65,27 @@ def get_logger() -> logging.Logger:
 
     logger.addHandler(console_handler)
 
+
 def get_db() -> mysql.connector.connection.MySQLConnection:
     """ Connects to Holberton Database """
-    
+    PERSONAL_DATA_DB_USERNAME = os.environ.get(
+        "PERSONAL_DATA_DB_USERNAME", "root"
+    )
+    PERSONAL_DATA_DB_PASSWORD = os.environ.get(
+        "PERSONAL_DATA_DB_PASSWORD", ""
+    )
+    PERSONAL_DATA_DB_HOST = os.environ.get(
+        "PERSONAL_DATA_DB_HOST", "localhost"
+    )
+    PERSONAL_DATA_DB_NAME = os.environ.get(
+        "PERSONAL_DATA_DB_NAME", ""
+    )
+
+    db = mysql.connector.connect(
+        user=PERSONAL_DATA_DB_USERNAME,
+        password=PERSONAL_DATA_DB_PASSWORD,
+        host=PERSONAL_DATA_DB_HOST,
+        database=PERSONAL_DATA_DB_NAME
+    )
+
+    return db
