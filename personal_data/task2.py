@@ -62,7 +62,3 @@ def get_logger() -> logging.Logger:
     console_handler.setFormatter(formatter)
 
     logger.addHandler(console_handler)
-
-def get_db() -> mysql.connector.connection.MySQLConnection:
-    """ Connects to Holberton Database """
-    
