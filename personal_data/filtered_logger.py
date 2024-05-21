@@ -5,6 +5,9 @@ import re
 import logging
 from typing import List
 
+# To be redacted
+PII_FIELDS = ("name", "email", "phone", "ssn", "password")
+
 
 def filter_datum(
         fields: List[str], redaction: str,
@@ -42,3 +45,19 @@ class RedactingFormatter(logging.Formatter):
         redacted_message = filter_datum(
             self.fields, self.REDACTION, og_mess, self.SEPARATOR)
         return redacted_message
+
+
+def get_logger() -> logging.Logger:
+    """ Sets up Logging system at INFO level only """
+    logger = logging.getLogger("user_data")
+
+    # Setting Logger Level
+    logger.setLevel(logging.INFO)
+
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.INFO)
+
+    formatter = RedactingFormatter(fields=[PII_FIELDS])
+    console_handler.setFormatter(formatter)
+
+    logger.addHandler(console_handler)
