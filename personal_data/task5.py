@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+""" Task 5 - Encrypting Passwords """
+
+import bcrypt
+
+
+def hash_password(password: str) -> bytes:
+    """ Takes in a password and returns a hashed string """
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(password.encode("utf-8"), salt)
+
+    return hashed
