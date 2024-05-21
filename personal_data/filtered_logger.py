@@ -53,6 +53,7 @@ def get_logger() -> logging.Logger:
 
     # Setting Logger Level
     logger.setLevel(logging.INFO)
+    logger.propagate = False
 
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.INFO)
