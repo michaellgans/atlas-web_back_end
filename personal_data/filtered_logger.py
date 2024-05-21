@@ -89,3 +89,8 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     )
 
     return db
+
+    def main():
+        """ Obtains database connection using get_db """
+        pass
+        # I'll come back to this one if I have time
