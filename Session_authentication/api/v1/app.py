@@ -25,10 +25,8 @@ elif auth_type == "basic_auth":
 
 @app.before_request
 def before_request() -> str:
-    """ Task 5 - Request Validation """
-    print("before_request is called")
+    """ Task 0 - Et moi """
     if auth is None:
-        print("Auth is none")
         return
 
     path_list = [
@@ -36,19 +34,17 @@ def before_request() -> str:
         "/api/v1/unauthorized/",
         "/api/v1/forbidden/"
     ]
-    print(f"Request path: {request.path}")
 
     if not auth.require_auth(request.path, path_list):
-        print("no auth required for this path")
         return
 
     if auth.authorization_header(request) is None:
-        print("Auth header is missing")
         abort(401)
 
     if auth.current_user(request) is None:
-        print("Current user is None")
         abort(403)
+
+    request.current_user = auth.current_user(request)
 
 
 @app.errorhandler(403)
