@@ -45,3 +45,10 @@ class Auth:
         """ Returns None - Requests """
 
         return None
+
+    def session_cookie(self, request=None):
+        """ Task 4 - Session Cookies """
+        if request is None:
+            return None
+        _my_session_id = os.getenv("SESSION_NAME")
+        return request.cookies.get(_my_session_id)
