@@ -38,7 +38,7 @@ class BasicAuth(Auth):
             decoded = base64.b64decode(base_header)
             decoded_utf8 = decoded.decode("utf-8")
             return decoded_utf8
-        except binascii.Error:
+        except (binascii.Error, UnicodeDecodeError):
             return None
 
     def extract_user_credentials(
@@ -94,9 +94,9 @@ class BasicAuth(Auth):
             return None
 
         user_info = self.extract_user_credentials(decoded_header)
-        if user_info is None:
+        if user_info is None or len(user_info) != 2:
             return None
 
-        user_obj = self.user_object_from_credentials(user_obj[0], user_obj[1])
+        user_obj = self.user_object_from_credentials(user_info[0], user_info[1])
 
-        return user
+        return user_obj

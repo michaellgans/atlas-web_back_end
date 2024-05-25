@@ -10,7 +10,6 @@ class Auth:
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """ Defines which routes require authorization """
-        print(f"Checking if {path} requires auth against {excluded_paths}")
 
         if not excluded_paths:
             return True
@@ -36,7 +35,6 @@ class Auth:
             return None
 
         header = request.headers.get("Authorization")
-        print(f"Authorization Header: {header}")
 
         if header is None:
             return None
