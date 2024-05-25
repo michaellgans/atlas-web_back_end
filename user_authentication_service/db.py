@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""DB module
-"""
+""" DB module """
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
+from sqlalchemy.orm.exc import NoResultFound
 
 from user import Base
 from user import User
@@ -37,3 +37,16 @@ class DB:
         self._session.add(new_user)
         self._session.commit()
         return new_user
+
+    def find_user_by(self, **kwargs) -> User:
+        """ Task 2 - finds user """
+        if not kwargs:
+            # No kwargs given
+            raise InvalidRequestError
+
+        user = self._session.query(User).filter_by(**kwargs).first()
+        if user is None:
+            # No user found
+            raise NoResultFound
+
+        return User
