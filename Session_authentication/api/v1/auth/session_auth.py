@@ -40,7 +40,7 @@ class SessionAuth(Auth):
     def destroy_session(self, request=None):
         """ Task 8 - Logout """
         if request is None:
-            reutrn False
+            return False
 
         cookie = self.session_cookie(request)
         if cookie is None:
