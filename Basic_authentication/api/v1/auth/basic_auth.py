@@ -97,6 +97,7 @@ class BasicAuth(Auth):
         if user_info is None or len(user_info) != 2:
             return None
 
-        user_obj = self.user_object_from_credentials(user_info[0], user_info[1])
+        user_obj = self.user_object_from_credentials(
+            user_info[0], user_info[1])
 
         return user_obj
