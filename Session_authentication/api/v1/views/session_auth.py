@@ -42,3 +42,14 @@ def login() -> str:
     user_info.set_cookie(os.getenv("SESSION_NAME"), session_id)
 
     return user_info
+
+
+@app_views.route(
+        "/auth_session/logout", methods=["DELETE"], strict_slashes=False)
+def logout():
+    """ Task 8 - Logout """
+    from api.v1.app import auth
+    if auth.destroy_session(request) is False:
+        abort(404)
+
+    return jsonify({}), 200
