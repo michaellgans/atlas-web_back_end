@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ Task 3 - Auth Class """
 
+import os
 from flask import request
 from typing import List, TypeVar
 
