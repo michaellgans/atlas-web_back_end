@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Prompts user for new file name
+printf "New File Name:\t"
+
+# Sets fileName as variable for input
+read fileName
+
+# Write the base file template
+echo "#!/usr/bin/env python3
+\"\"\" Documentation \"\"\"
+
+
+def myFunction():
+    \"\"\" Documentation \"\"\"" > "$fileName"
+
+# Makes new file executable
+chmod u+x "$fileName"
+
+# Opens new file with vi
+vi "$fileName"
