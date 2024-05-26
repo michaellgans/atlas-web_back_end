@@ -12,6 +12,7 @@ def _hash_password(password: str) -> bytes:
     """ Task 4 - Salted Password """
     return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
 
+
 def _generate_uuid() -> str:
     """ Task 9 - Generate a UUID """
     return str(uuid.uuid4)
