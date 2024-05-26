@@ -11,6 +11,7 @@ def _hash_password(password: str) -> bytes:
     """ Task 4 - Salted Password """
     return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
 
+
 class Auth:
     """ Task 5 - requires email and password """
     def __init__(self):
