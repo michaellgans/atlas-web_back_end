@@ -69,3 +69,14 @@ class Auth:
             user.session_id = None
         except NoResultFound:
             return None
+
+    def get_reset_password_token(self, email: str) -> str:
+        """ Task 16 - Helps reset Password """
+        try:
+            user_info = self._db.find_user_by(email=email)
+        except NoResultFound:
+            raise ValueError
+
+        reset_token = _generate_uuid()
+        self._db.update_user(user_info.id, reset_token=reset_token)
+        return reset_token
