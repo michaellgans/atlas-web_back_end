@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Task 6 - Basic Flask App """
 
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request, abort, redirect
 from auth import Auth
 from sqlalchemy.orm.exc import NoResultFound
 
@@ -52,7 +52,7 @@ def logout() -> str:
 
     if user:
         AUTH.destroy_session(user.id)
-        return redirect(url_for("hello"))
+        return redirect(url_for("/"))
     else:
         abort(403)
 
