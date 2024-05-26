@@ -61,3 +61,11 @@ class Auth:
             return user_info
         except NoResultFound:
             return None
+
+    def destroy_session(self, user_id: int) -> None:
+        """ Task 13 - stops the current session """
+        try:
+            user = self._db.find_user_by(id=user_id)
+            user.session_id = None
+        except NoResultFound:
+            return None
