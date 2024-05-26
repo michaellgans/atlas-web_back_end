@@ -15,7 +15,7 @@ def _hash_password(password: str) -> bytes:
 
 def _generate_uuid() -> str:
     """ Task 9 - Generate a UUID """
-    return str(uuid.uuid4)
+    return str(uuid.uuid4())
 
 
 class Auth:
