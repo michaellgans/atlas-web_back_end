@@ -49,7 +49,7 @@ class DB:
             # No user found
             raise NoResultFound
 
-        return User
+        return user
 
     def update_user(self, user_id: int, **kwargs) -> None:
         """ Task 3 - Updates User """
