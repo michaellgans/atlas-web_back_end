@@ -41,3 +41,13 @@ class Auth:
             return bcrypt.checkpw(password_bytes, user_info.hashed_password)
         except NoResultFound:
             return False
+
+    def create_session(self, email: str) -> str:
+        """ Task 10 - Gets the session ID """
+        try:
+            user_info = self._db.find_user_by(email=email)
+            session_id = _generate_uuid()
+            self._db.update_user(user_info.id, session_id=session_id)
+            return session_id
+        except NoResultFound:
+            return None
