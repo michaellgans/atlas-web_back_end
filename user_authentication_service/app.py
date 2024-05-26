@@ -52,7 +52,19 @@ def logout() -> str:
 
     if user:
         AUTH.destroy_session(user.id)
-        return redirect(url_for('/'))
+        return redirect(url_for("hello"))
+    else:
+        abort(403)
+
+
+@app.route("/profile", methods=["GET"], strict_slashes=False)
+def profile():
+    """ Task 15 - Profile """
+    session_id = request.cookies.get("session_id")
+    user = AUTH.get_user_from_session_id(session_id)
+
+    if user:
+        return jsonify({"email": f"{user.email}"}), 200
     else:
         abort(403)
 
