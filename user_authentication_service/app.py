@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Task 6 - Basic Flask App """
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, abort
 from auth import Auth
 from sqlalchemy.orm.exc import NoResultFound
 
