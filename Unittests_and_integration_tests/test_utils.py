@@ -1,6 +1,20 @@
 #!/usr/bin/env python3
-""" Documentation """
+""" Task 0 - Parameterize a unit test """
+
+import unittest
+from utils import access_nested_map
+from parameterized import parameterized
 
 
-def myFunction():
-    """ Documentation """
+class TestAccessNestedMap(unittest.TestCase):
+    """ Task 0 - Create a class """
+
+    @parameterized.expand([
+        ({"a": 1}, ("a",), 1),
+        ({"a": {"b": 2}}, ("a",), {"b": 2}),
+        ({"a": {"b": 2}}, ("a", "b"), 2)
+    ])
+    def test_access_nested_map(self, nested_map, path, expected) -> None:
+        """ Tests assertEqual """
+        result = access_nested_map(nested_map, path)
+        self.assertEqual(result, expected)
