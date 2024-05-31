@@ -5,6 +5,7 @@ import unittest
 from unittest.mock import patch, PropertyMock
 from parameterized import parameterized
 from client import GithubOrgClient
+from requests.exceptions import HTTPError
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -65,3 +66,31 @@ class TestGithubOrgClient(unittest.TestCase):
     def test_has_license(self, repo, value, expected):
         """ Task 7 - Parameterize """
         self.assertEqual(GithubOrgClient.has_license(repo, value), expected)
+
+
+@parameterized("fixtures", [
+    ("org_payload"),
+    ("repos_payload"),
+    ("expected_repos"),
+    ("apache2_repos")
+])
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """ Task 8 - Integration Tests """
+
+    @classmethod
+    def setUpClass(cls):
+        """ Sets up class """
+        # Simulates an error raised of HTTP request fails.
+        cls.get_patcher = patch("client.get_json", side_effect=HTTPError)
+        cls.get_patcher.start()
+
+    @classmethod
+    def tearDownClass(cls):
+        """ Tears down class """
+        cls.get_patcher.stop()
+
+    def test_public_repos(self):
+        """ Tests public_repos """
+        client = GithubOrgClient("test")
+        self.assertEqual(client.public_repos(), [])
+        self.get_patcher.stop()
