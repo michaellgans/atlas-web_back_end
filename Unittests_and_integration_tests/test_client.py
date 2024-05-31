@@ -75,7 +75,7 @@ class TestGithubOrgClient(unittest.TestCase):
     ("apache2_repos")
 ])
 class TestIntegrationGithubOrgClient(unittest.TestCase):
-    """ Task 8 - Integration Tests """
+    """ Task 8 - Integration Tests (Not working) """
 
     @classmethod
     def setUpClass(cls):
