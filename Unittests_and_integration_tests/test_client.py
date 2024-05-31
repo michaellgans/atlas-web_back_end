@@ -80,9 +80,8 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """ Sets up class """
-        # Simulates an error raised of HTTP request fails.
-        cls.get_patcher = patch("client.get_json", side_effect=HTTPError)
-        cls.get_patcher.start()
+        cls.get_patcher = patch("client.get_json")
+        cls.mock_get_json = cls.get_patcher.start()
 
     @classmethod
     def tearDownClass(cls):
@@ -91,6 +90,11 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
     def test_public_repos(self):
         """ Tests public_repos """
+        self.mock_get_json.side_effect = [
+            self.org_payload,
+            self.repos_payload,
+            self.expected_repos,
+            self.apache2_repos
+        ]
         client = GithubOrgClient("test")
-        self.assertEqual(client.public_repos(), [])
-        self.get_patcher.stop()
+        self.assertEqual(client.public_repos(), self.expected_repos)
