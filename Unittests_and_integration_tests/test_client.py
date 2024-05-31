@@ -2,7 +2,7 @@
 """ Task 4 - Testing GithubOrgClient """
 
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, PropertyMock
 from parameterized import parameterized
 from client import GithubOrgClient
 
@@ -30,3 +30,11 @@ class TestGithubOrgClient(unittest.TestCase):
         self.assertEqual(client.org, {"payload": True})
         # Makes sure get_json called only once
         get_json.assert_called_once()
+
+    def test_public_repos_url(self):
+        """ Task 5 - Mocking Properties """
+        with patch("client.GithubOrgClient.org",
+                   new_callable=PropertyMock) as mock_org:
+            mock_org.return_value = {"repos_url": "http://cats.com"}
+            client = GithubOrgClient("test")
+            self.assertEqual(client._public_repos_url, "http://cats.com")
