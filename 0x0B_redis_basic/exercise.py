@@ -28,3 +28,5 @@ class Cache():
         self._redis.set(data_id, data)
 
         return data_id
+
+    # def get(self, key: str, )
