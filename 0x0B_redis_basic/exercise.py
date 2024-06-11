@@ -113,3 +113,21 @@ class Cache():
          - Int version of bytes
         """
         return int.from_bytes(data, byteorder="big")
+    
+
+def replay(method: Callable) -> None:
+    """ Replays the inputs and outputs of a method """
+    redis_instance = method.__self__._redis
+    stored_inputs = f"{method.__qualname__}:inputs"
+    stored_outputs = f"{method.__qualname__}:outputs"
+
+    inputs = redis_instance.lrange(stored_inputs, 0, -1)
+    outputs = redis_instance.lrange(stored_outputs, 0, -1)
+
+    call_count = len(inputs)
+    print(f"{method.__qualname__} was called {call_count} times:")
+
+    for input_data, output_data in zip(inputs, outputs):
+        in_data = input_data.decode("utf-8")
+        out_data = output_data.decode("utf-8")
+        print(f"{method.__qualname__}(*{in_data}) -> {out_data}")
