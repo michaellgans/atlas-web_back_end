@@ -25,7 +25,6 @@ def count_calls(method: Callable) -> Callable:
     return wrapper
 
 
-@count_calls
 class Cache():
     """ Redis Client Class """
     def __init__(self):
@@ -34,6 +33,7 @@ class Cache():
         self._redis.ping()
         self._redis.flushdb()
 
+    @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """
         Generates Random UUID Key
