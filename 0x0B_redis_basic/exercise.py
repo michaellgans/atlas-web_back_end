@@ -29,4 +29,43 @@ class Cache():
 
         return data_id
 
-    # def get(self, key: str, )
+    def get(self, key: str, fn: Union[None, callable] = None) ->\
+            Union[str, bytes, int, float]:
+        """
+        Returns data to origional format
+
+        Arguments:
+         - key: UUID key from store
+         - func: optional
+
+        Returns:
+         - Data from Redis
+        """
+        data = self._redis.get(key)
+        if fn:
+            return fn(data)
+        return data
+
+    def get_str(self, data: bytes) -> str:
+        """
+        Parameterizes with correct conversion
+
+        Arguments:
+         - data: data stored in Redis
+
+        Returns:
+         - Str version of bytes
+        """
+        return data.decode("utf-8")
+
+    def get_int(self, data: bytes) -> int:
+        """
+        Parameterizes with correct conversion
+
+        Arguments:
+         - data: data stored in Redis
+
+        Returns:
+         - Int version of bytes
+        """
+        return int.from_bytes(data, byteorder="big")
