@@ -113,7 +113,7 @@ class Cache():
          - Int version of bytes
         """
         return int.from_bytes(data, byteorder="big")
-    
+
 
 def replay(method: Callable) -> None:
     """ Replays the inputs and outputs of a method """
