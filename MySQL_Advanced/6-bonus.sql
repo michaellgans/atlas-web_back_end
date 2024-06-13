@@ -8,16 +8,22 @@ CREATE PROCEDURE AddBonus(
 )
 BEGIN
     -- Temporary project_id variable
-    DECLARE project_id INT;
+    DECLARE check_project_id INT;
 
-    INSERT INTO projects (name)
-    VALUES (p_project_name)
-    ON DUPLICATE KEY UPDATE id = LAST_INSERT_ID(id);
-    
-    SELECT LAST_INSERT_ID() INTO project_id;
+    -- Does the project exist?
+    SELECT id 
+    INTO check_project_id 
+    FROM projects 
+    WHERE name = p_project_name;
 
-    INSERT INTO corrections (user_id, project_id, score)
-    VALUES (p_user_id, project_id, p_bonus);
+    IF check_project_id IS NULL THEN
+        INSERT INTO projects (name)
+        VALUES (p_project_name);
+        SET check_project_id = LAST_INSERT_ID();
+    END IF;
+
+INSERT INTO corrections (user_id, project_id, score)
+VALUES (p_user_id, check_project_id, p_bonus);
 END $$
 
 DELIMITER ;
