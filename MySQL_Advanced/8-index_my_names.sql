@@ -1,5 +1,2 @@
--- Task 8: Creates an idex based on the first letter
--- of a name
-CREATE INDEX idx_name_first ON names ((LEFT(name, 1)));
-
-SHOW INDEX FROM names;
+-- Task 9: creates index based on name and score
+CREATE INDEX idx_name_first ON names (name(1), score);
