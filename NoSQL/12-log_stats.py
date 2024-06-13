@@ -1,22 +1,32 @@
 #!/usr/bin/env python3
-""" Task 8 - Lists all documents in a collection """
+""" Task 12 - Log stats """
+
+from pymongo import MongoClient
 
 
-def list_all(mongo_collection):
+def log_stats():
     """
-    List all documents in mongo_collection
+    Provides stats about Nginx logs
 
     Arguments:
-     - mong_collection: the collection
+     - None
 
     Returns:
-     - All documents in that collection
+     - Nginx Stats
     """
-    results_cursor = mongo_collection.find({})
+    client = MongoClient("mongodb://localhost:27017")
 
-    documents_found = []
+    db = client.logs
+    collection = db.nginx
 
-    for document in results_cursor:
-        documents_found.append(document)
+    total_logs = collection.count_documents({})
+    print(f"{total_logs} logs")
 
-    return documents_found
+    methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
+    print("Methods:")
+    for method in methods:
+        count = collection.count_documents({"method": method})
+        print(f"\tmethod {method}: {count}")
+
+    get_status_count = collection.count_documents({"method:": "GET", "path": "/status"})
+    print(f"{get_status_count} status check")
