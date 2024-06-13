@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """ Task 8 - Lists all documents in a collection """
 
 
