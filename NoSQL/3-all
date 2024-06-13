@@ -1,0 +1,2 @@
+// Task 3: List all the documents in the collection
+db.school.find()
