@@ -1,2 +1,2 @@
-// This is a comment
-THIS is your code;
+// Task 4: Lists all documents with given name
+db.school.find({ name: "Holberton school"});
