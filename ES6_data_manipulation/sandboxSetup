@@ -9,6 +9,8 @@ pwd
 
 nvm install 12.11.1
 
+nvm use 12.11.1
+
 echo "---CURRENT VERSION OF NVM---"
 nvm -v
 
