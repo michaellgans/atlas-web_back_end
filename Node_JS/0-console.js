@@ -1,7 +1,8 @@
 // Task 0 - Console Greeting
 
 function displayMessage(message) {
-    // Prints to STDOUT
+    // Prints a message to STDOUT
+
     console.log(message);
 }
 
