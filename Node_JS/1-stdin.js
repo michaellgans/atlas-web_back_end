@@ -5,8 +5,12 @@ console.log('Welcome to Atlas School, what is your name?');
 
 // Listen for standard input
 process.stdin.on('data', (input) => {
-  console.log(`Your name is: ${input}`);
-  process.exit();
+  console.log(`\nYour name is: ${input}`);
+
+  // Makes exit process wait for better UX
+  setTimeout(() => {
+    process.exit();
+  }, 1000);
 });
 
 // Listen for "exit"
