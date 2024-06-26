@@ -4,36 +4,40 @@
 const fs = require('fs');
 
 function countStudents(path) {
-  // Reads file from path synchronously
-  fs.readFile(path, 'utf8', (err, data) => {
-    if (err) {
-      // If can't find database, throw error
-      console.log('Cannot load the database');
-      return;
-    }
+  return new Promise((resolve, reject) => {
+    // Reads file from path asynchronously
+    fs.readFile(path, 'utf8', (err, data) => {
+      if (err) {
+        // If can't find database, throw error
+        reject(new Error('Cannot load the database'));
+      } else {
+        // Finding number of students
+        const lines = data.trim().split('\n').slice(1);
+        const records = lines.length;
 
-    // Finding number of students
-    const lines = data.trim().split('\n').slice(1);
-    const records = lines.length;
+        console.log(`Number of students: ${records}`);
 
-    console.log(`Number of students: ${records}`);
+        // Pulling first name and field into an object
+        const nameByField = {};
 
-    // Pulling first name and field into an object
-    const nameByField = {};
+        lines.forEach((line) => {
+          const [firstname, , , field] = line.split(',');
 
-    lines.forEach((line) => {
-      const [firstname, , , field] = line.split(',');
+          // Sorts first names into arrays by field
+          if (!nameByField[field]) {
+            nameByField[field] = [];
+          }
+          nameByField[field].push(firstname);
+        });
 
-      // Sorts first names into arrays by field
-      if (!nameByField[field]) {
-        nameByField[field] = [];
+        // Prints number of students by field and lists the students
+        Object.entries(nameByField).forEach(([field, listOfStudents]) => {
+          console.log(`Number of students in ${field}: ${listOfStudents.length}. List: ${listOfStudents.join(', ')}`);
+        });
+
+        // Resolves promise
+        resolve();
       }
-      nameByField[field].push(firstname);
-    });
-
-    // Prints number of students by field and lists the students
-    Object.entries(nameByField).forEach(([field, listOfStudents]) => {
-      console.log(`Number of students in ${field}: ${listOfStudents.length}. List: ${listOfStudents.join(', ')}`);
     });
   });
 }
