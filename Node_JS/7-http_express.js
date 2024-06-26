@@ -1,17 +1,18 @@
-// Task 6 - Create a small HTTP server using Express
+// Task 7 - More compless HTTP server using Express
 
 const express = require('express');
+const countStudents = require('./3-read_file_async');
 
-// Names express as app and sets port
 const app = express();
 const port = 1245;
 
-// Message to send once route is reached
 app.get('/', (req, res) => {
+  res.type('type/plain');
   res.send('Hello Atlas School');
 });
 
-// Message to send if server is running
+app.get('/students')
+
 app.listen(port, () => {
   console.log('It\'s running!');
 });
