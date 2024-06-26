@@ -1,4 +1,5 @@
 // Task 8.1 - Accepts file path and reads DB
+// (RUN ME FROM BASE OF FOLDER)
 
 // Uses built in file system
 const fs = require('fs');

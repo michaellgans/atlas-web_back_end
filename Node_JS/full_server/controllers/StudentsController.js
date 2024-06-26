@@ -36,11 +36,11 @@ class StudentsController {
       // Grabs students by major passed to the route
       const students = result
         .split('\n')
-        .filter(line => line.includes(`in ${major}`))
+        .filter(line => line.includes('in ${major}'))
         .join('\n');
       
       res.type('type/plain');
-      res.status(200).send(`${students}`);
+      res.status(200).send(`List of students in ${major}:\n${students}`);
     } catch (error) {
       // Catches Status 500
       console.log(error);
