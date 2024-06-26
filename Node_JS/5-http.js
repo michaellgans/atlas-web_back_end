@@ -1,7 +1,6 @@
 // Task 5 - Create more complex HTTP server
 
 const http = require('http');
-const fs = require('fs');
 const countStudents = require('./3-read_file_async');
 
 const app = async (req, res) => {
@@ -16,7 +15,7 @@ const app = async (req, res) => {
     const databasePath = process.argv[2];
 
     // Try to pull list of students from DB
-    try{
+    try {
       const result = await countStudents(databasePath);
       res.end(`This is the list of our students\n${result}`);
     } catch (error) {

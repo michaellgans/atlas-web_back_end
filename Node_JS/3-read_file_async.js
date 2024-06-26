@@ -16,7 +16,7 @@ function countStudents(path) {
         const records = lines.length;
 
         // Printed version for Task 5
-        let result = `Number of students: ${records}\n`
+        let result = `Number of students: ${records}\n`;
 
         console.log(`Number of students: ${records}`);
 
