@@ -5,6 +5,6 @@ const calculateNumbers = require('./0-calcul');
 
 describe('calculateNumbers', function() {
   it('should take in two numbers, round them, and return the sum', function() {
-    assert.strictEqual(calculateNumbers(2.2, 3.3), 4);
+    assert.strictEqual(calculateNumbers(2.2, 3.3), 5);
   });
 });
