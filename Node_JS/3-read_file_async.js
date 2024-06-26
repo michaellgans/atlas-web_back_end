@@ -15,6 +15,9 @@ function countStudents(path) {
         const lines = data.trim().split('\n').slice(1);
         const records = lines.length;
 
+        // Printed version for Task 5
+        let result = `Number of students: ${records}\n`
+
         console.log(`Number of students: ${records}`);
 
         // Pulling first name and field into an object
@@ -35,8 +38,13 @@ function countStudents(path) {
           console.log(`Number of students in ${field}: ${listOfStudents.length}. List: ${listOfStudents.join(', ')}`);
         });
 
+        // String version for Task 5
+        Object.entries(nameByField).forEach(([field, listOfStudents]) => {
+          result += `Number of students in ${field}: ${listOfStudents.length}. List: ${listOfStudents.join(', ')}\n`;
+        });
+
         // Resolves promise
-        resolve();
+        resolve(result);
       }
     });
   });
