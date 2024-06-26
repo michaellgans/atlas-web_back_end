@@ -1,6 +1,16 @@
-// Task 8.4 - Holds Routes
+// Task 8.4 - Router, Traffic Controller
 
-app.get('/')
+import AppController from '../controllers/AppController';
+import StudentsController from '../controllers/StudentsController';
 
-app.get('/students') AND ('/students/:majorto') to StudentsController
+const express = require('express');
 
+const router = express.Router();
+
+router.get('/', AppController.getHomepage);
+
+router.get('/students', StudentsController.getAllStudents);
+
+router.get('/students/:major', StudentsController.getAllStudentsByMajor);
+
+module.exports = router;

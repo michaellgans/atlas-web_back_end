@@ -1,16 +1,38 @@
 // Task 8.3 - Students Controller
 
-function getAllStudents(request):
-    return status 200
-    calls readDatabase from utils
+import readDatabase from '../utils';
 
-    if database not available
-    return 500
-    error: 'Cannot load the database'
+class StudentsController {
+  // Controls information retrieved from database
+  static getAllStudents(req, res) {
+    try {
+      // Grabs the CSV file from user input
+      const readDatabase = process.argv[2];
+  
+      // Sends Task 3 output
+      res.type('type/plain');
+      res.status(200).send(`This is the list of students\n${result}`);
+    } catch (error) {
+      // Catches Status 500
+      console.log(error);
+      res.status(500).send('Internal Server Error');
+    }
+  }
 
-function getAllStudentsByMajor(request):
-    return status 200
+  static getAllStudentsByMajor(req, res) {
+    try {
+      // Grabs the CSV file from user input
+      const readDatabase = process.argv[2];
+  
+      // Sends Task 3 output
+      res.type('type/plain');
+      res.status(200).send(`This is the list of students\n${result}`);
+    } catch (error) {
+      // Catches Status 500
+      console.log(error);
+      res.status(500).send('Internal Server Error');
+    }
+  }
+}
 
-    console.log('Major parameter must be CS or SWE');
-    calls function readDatabase from utils
-    error: 'Canot load the database'
+module.exports = StudentsController;
