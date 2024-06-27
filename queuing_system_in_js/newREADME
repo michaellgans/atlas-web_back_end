@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Prompts user for new file name
+# printf "New File Name:\t"
+
+# Sets fileName as variable for input
+# read fileName
+
+# Write the base file template
+echo "// Task 0 - 
+" > "README.md"
+
+# Opens new README with vi
+vi "README.md"
