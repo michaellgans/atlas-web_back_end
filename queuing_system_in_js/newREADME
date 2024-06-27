@@ -1,14 +1,33 @@
 #!/bin/bash
 
-# Prompts user for new file name
-# printf "New File Name:\t"
+# Prompts user for title of project
+printf "Name of project:\t"
+read projectName
 
-# Sets fileName as variable for input
-# read fileName
+# Prompts user for Learning Objectives
+printf "Copy and paste all learning objectives here. End with a blank line:\n"
+learningObjectives=$(cat)
+
+# Prompts user for Requirements
+printf "Copy and paste all requirements here. End with a blank line:\n"
+requirements=$(cat)
 
 # Write the base file template
-echo "// Task 0 - 
-" > "README.md"
+{
+echo "# $projectName
+
+## Learning Objectives
+#### At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+"
+# Use sed to format learning objectives
+echo "$learningObjectives" | sed 's/^/- /'
+
+echo "
+## Requirements
+"
+# Use sed to format requirements
+echo "$requirements" | sed 's/^/- /'
+} > "README.md"
 
 # Opens new README with vi
 vi "README.md"
