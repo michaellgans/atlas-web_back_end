@@ -1,4 +1,4 @@
-// Task 8 - Tests api.js
+// Task 9 - Tests api.js
 
 const { expect } = require('chai');
 const request = require('request');
