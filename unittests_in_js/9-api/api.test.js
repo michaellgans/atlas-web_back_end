@@ -20,3 +20,25 @@ describe('Tests index', function() {
     });
   });
 });
+
+describe('Tests Cart Page', function() {
+  // Checks for the right status code
+  it('returns the correct status code: 200 if id is a number', function(done) {
+    request('http://localhost:7865/cart/42', function(error, response, body) {
+      // Status Code
+      expect(response.statusCode).to.equal(200);
+      
+      // Console.log message
+      expect(body).to.equal('Payment methods for cart 42');
+      done();
+    });
+  });
+
+  // Checks for the right console.log output
+  it('returns 404 if id is not a number', function(done) {
+    request('http://localhost:7865/cart/atlas', function(error, response, body) {
+      expect(response.statusCode).to.equal(404);
+      done();
+    });
+  });
+});
