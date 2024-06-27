@@ -5,11 +5,11 @@ printf "Name of project:\t"
 read projectName
 
 # Prompts user for Learning Objectives
-printf "Copy and paste all learning objectives here. End with a blank line:\n"
+printf "\n\nPaste all learning objectives here then <ENTER> then <CTRL + D>:\n"
 learningObjectives=$(cat)
 
 # Prompts user for Requirements
-printf "Copy and paste all requirements here. End with a blank line:\n"
+printf "\n\nPaste all requirements here then <ENTER> then <CTRL + D>:\n"
 requirements=$(cat)
 
 # Write the base file template
@@ -19,15 +19,12 @@ echo "# $projectName
 ## Learning Objectives
 #### At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
 "
-# Use sed to format learning objectives
+# Adds a - at the beginning of each line
 echo "$learningObjectives" | sed 's/^/- /'
 
 echo "
 ## Requirements
 "
-# Use sed to format requirements
+# Adds a - at the beginning of each line
 echo "$requirements" | sed 's/^/- /'
 } > "README.md"
-
-# Opens new README with vi
-vi "README.md"
