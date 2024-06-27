@@ -7,8 +7,16 @@ printf "New File Name:\t"
 read fileName
 
 # Write the base file template
-echo "// Task 0 - 
-" > "$fileName"
+echo "// Task # - Tests FILE
+
+const assert = require('assert');
+const FUNCITON = require('FILE');
+
+describe('FUNCITON', function() {
+  it('DESCRIPTION OF TEST', function() {
+    assert.strictEqual(FUNCTION(A, B), EXPECTED);
+  });
+});" > "$fileName"
 
 # Makes new file executable
 chmod u+x "$fileName"
