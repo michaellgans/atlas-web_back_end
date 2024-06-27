@@ -1,7 +1,7 @@
 // Task 3 - Spies Testing
 
 const Utils = {
-  calculateNumbers: function(type, a, b) {
+  calculateNumber: function(type, a, b) {
     // Calculates the outcome of two numbers
     // depending on the type of calculation
     const numA = Math.round(a);

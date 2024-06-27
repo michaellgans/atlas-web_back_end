@@ -6,17 +6,17 @@ const sendPaymentRequestToApi = require('./3-payment.js');
 const Utils = require('./utils');
 
 describe('sendPaymentRequestToApi', function() {
-  it('calls Utils.calculateNumbers to calculate the SUM', function() {
+  it('calls Utils.calculateNumber to calculate the SUM', function() {
     // Create spy
-    const calculateNumbersSpy = sinon.spy(Utils, 'calculateNumbers');
+    const calculateNumberSpy = sinon.spy(Utils, 'calculateNumber');
 
     // Call function to spy on
     sendPaymentRequestToApi(100, 100);
 
     // What do you expect the outcome to be?
-    expect(calculateNumbersSpy.calledOnceWithExactly('SUM', 100, 100)).to.be.true;
+    expect(calculateNumberSpy.calledOnceWithExactly('SUM', 100, 100)).to.be.true;
 
     // Remove spy
-    calculateNumbersSpy.restore();
+    calculateNumberSpy.restore();
   });
 });
