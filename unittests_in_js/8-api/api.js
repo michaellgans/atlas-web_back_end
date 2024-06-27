@@ -1,10 +1,15 @@
 // Task 8 - Basic Integration Testing
 
 const express = require('express');
-const FUNCITON = require('FILE');
+const app = express();
 
-describe('FUNCITON', function() {
-  it('DESCRIPTION OF TEST', function() {
-    assert.strictEqual(FUNCTION(A, B), EXPECTED);
-  });
+app.get('/', (req, res) => {
+  res.send('Welcome to the payment system');
 });
+
+// To be displayed when server is connected
+app.listen(7865, () => {
+  console.log('API available on localhost port 7865')
+});
+
+module.exports = app;
