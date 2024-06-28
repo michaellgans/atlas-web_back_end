@@ -7,7 +7,7 @@ const push_notification_code = kue.createQueue();
 
 // The Job
 const jobObject = {
-    phoneNumber: 867-5309,
+    phoneNumber: '867-5309',
     message: 'Jenny\'s Number',
 };
 
