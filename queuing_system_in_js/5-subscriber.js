@@ -1,4 +1,4 @@
-// Task 4 - Node Redis Advanced Operations
+// Task 5 - Node Redis Publisher & Subscriber
 
 import redis from 'redis';
 
@@ -14,14 +14,13 @@ client.on('error', (err) => {
     console.error('Redis client not connected to the server:', err);
 });
 
-client.hset('AtlasSchools', 'Portland', '50', redis.print);
-client.hset('AtlasSchools', 'Seattle', '80', redis.print);
-client.hset('AtlasSchools', 'New York', '20', redis.print);
-client.hset('AtlasSchools', 'Bogota', '20', redis.print);
-client.hset('AtlasSchools', 'Cali', '40', redis.print);
-client.hset('AtlasSchools', 'Paris', '2', redis.print);
+client.subscribe('holberton school channel');
 
-client.hgetall('AtlasSchools', (err, reply) => {
-    console.log(reply);
+client.on('message', (channel, message) => {
+    if (message === 'KILL_SERVER') {
+        client.unsubscribe('holberton school channel');
+        client.quit();
+    } else {
+        console.log(message);
+    }
 });
-
